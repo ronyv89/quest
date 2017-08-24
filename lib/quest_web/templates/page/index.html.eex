@@ -1,0 +1,5 @@
+<%= if Coherence.current_user(@conn) do %>
+  <%= link "Delete", to: session_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+<% else %>
+  <%= link('Test', to: '/sessions/new') %>
+<% end %>

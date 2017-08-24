@@ -1,0 +1,2 @@
+<h2>Show Profile</h2>
+<%= @profile.id %>
