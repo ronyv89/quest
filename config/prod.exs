@@ -27,7 +27,9 @@ config :quest, Quest.Repo,
   url: System.get_env("DATABASE_URL"),
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true
-
+config :coherence, CoherenceDemoWeb.Coherence.Mailer,
+  adapter: Swoosh.Adapters.Mailgun,
+  api_key: System.get_env("MAILGUN_API_KEY")
 config :quest, Quest.Mailer,
   adapter: Bamboo.SMTPAdapter,
   server: System.get_env("MAILGUN_SMTP_SERVER"),
