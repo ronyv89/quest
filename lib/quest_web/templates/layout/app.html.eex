@@ -7,20 +7,29 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Quest!</title>
+    <title>Quest QnA!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
-    <div class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
-      <main role="main">
+    <%= if Coherence.current_user(@conn) do %>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Quest</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="d-flex flex-row-reverse collapse navbar-collapse" id="navbarSupportedContent">
+          <%= link "Logout", to: session_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"] %>
+        </div>
+      </nav>
+    <% end %>
+    <div class="container-fluid container-full d-flex full-width">
+      <main role="main" class="container-full d-flex full-width">
         <%= render @view_module, @view_template, assigns %>
       </main>
 
     </div> <!-- /container -->
+
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

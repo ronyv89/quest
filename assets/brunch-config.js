@@ -2,7 +2,7 @@ exports.config = {
   // See http://brunch.io/#documentation for docs.
   files: {
     javascripts: {
-      joinTo: "js/app.js"
+      joinTo: "js/app.js",
 
       // To use a separate vendor.js bundle, specify two files path
       // http://brunch.io/docs/config#-files-
@@ -12,15 +12,19 @@ exports.config = {
       // }
       //
       // To change the order of concatenation of files, explicitly mention here
-      // order: {
-      //   before: [
-      //     "vendor/js/jquery-2.1.1.js",
-      //     "vendor/js/bootstrap.min.js"
-      //   ]
-      // }
+      order: {
+        before: [
+          "node_modules/jquery/dist/jquery.slim.js",
+          "node_modules/popper.js/dist/popper.js",
+          "node_modules/bootstrap/dist/js/bootstrap.js",
+        ]
+      }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: "css/app.css",
+      order: {
+        after: ["priv/static/css/app.scss"] // concat app.css last
+      }
     },
     templates: {
       joinTo: "js/app.js"
@@ -47,6 +51,12 @@ exports.config = {
     babel: {
       // Do not use ES6 compiler in vendor code
       ignore: [/vendor/]
+    },
+    sass: {
+      options: {
+        includePaths: ["node_modules/bootstrap/scss"], // tell sass-brunch where to look for files to @import
+        precision: 8 // minimum precision required by bootstrap
+      }
     }
   },
 
@@ -57,6 +67,12 @@ exports.config = {
   },
 
   npm: {
-    enabled: true
+    enabled: true,
+    globals: { // Bootstrap JavaScript requires both '$', 'jQuery', and Tether in global scope
+      $: 'jquery',
+      jQuery: 'jquery',
+      Popper: 'popper.js',
+      bootstrap: 'bootstrap' // require Bootstrap JavaScript globally too
+    }
   }
 };

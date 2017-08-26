@@ -8,7 +8,14 @@ use Mix.Config
 # General application configuration
 config :quest,
   ecto_repos: [Quest.Repo]
-
+config :arc,
+  storage: Arc.Storage.Local
+# config :ex_admin,
+#   repo: Quest.Repo,
+#   module: QuestWeb,    # MyProject.Web for phoenix >= 1.3.0-rc 
+#   modules: [
+#     Quest.ExAdmin.Dashboard,
+#   ]
 # Configures the endpoint
 config :quest, QuestWeb.Endpoint,
   url: [host: "localhost"],

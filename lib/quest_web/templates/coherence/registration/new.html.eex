@@ -1,5 +1,15 @@
-<h3><%= dgettext "coherence", "Register Account" %></h3>
 
-<%= render "form.html", changeset: @changeset,
-                        label: dgettext("coherence", "Register"), required: [required: ""],
-                        action: registration_path(@conn, :create) %>
+<div class="justify-content-center align-items-center d-flex full-width reg-box">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-logo justify-content-center d-flex">Quest</div>
+      <div class="justify-content-center d-flex">Register</div>
+      <div class="d-flex flex-row">
+        <%= render "form.html", changeset: @changeset,
+                                label: dgettext("coherence", "Register"), required: [required: ""],
+                                action: registration_path(@conn, :create) %>
+      </div>
+    </div>
+  </div>
+</div>
+

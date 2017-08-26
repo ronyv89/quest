@@ -1,4 +1,4 @@
-<%= form_for @changeset, @action, [as: :registration], fn f  -> %>
+<%= form_for @changeset, @action, [as: :registration, class: 'reg-box'], fn f  -> %>
 
   <%= if @changeset.action do %>
     <div class="alert alert-danger">

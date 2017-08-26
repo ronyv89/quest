@@ -37,10 +37,15 @@ defmodule QuestWeb.Router do
     # Add public routes below
   end
 
+  scope "/admin", QuestWeb.Admin, as: :admin do
+    pipe_through :protected
+    resources "/topics", TopicController
+  end
+
   scope "/", QuestWeb do
     pipe_through :protected
     resources "/profile", ProfileController, singleton: true
-    resources "/topics", TopicController
+    resources "/topics", TopicController, only: [:index, :show]
     # Add protected routes below
   end
 end

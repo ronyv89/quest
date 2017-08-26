@@ -20,7 +20,7 @@ defmodule Quest.Mixfile do
   def application do
     [
       mod: {Quest.Application, []},
-      extra_applications: [:logger, :runtime_tools, :coherence]
+      extra_applications: [:logger, :runtime_tools, :coherence, :arc_ecto]
     ]
   end
 
@@ -37,6 +37,9 @@ defmodule Quest.Mixfile do
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
       {:postgrex, ">= 0.0.0"},
+      {:arc, "~> 0.8.0"},
+      {:arc_ecto, "~> 0.7.0"},
+      {:canary, github: "cpjk/canary"},
       {:coherence, github: 'smpallen99/coherence'},
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},

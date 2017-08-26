@@ -1,5 +1,19 @@
 <%= if Coherence.current_user(@conn) do %>
-  <%= link "Delete", to: session_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
 <% else %>
-  <%= link('Test', to: '/sessions/new') %>
+  <div class="justify-content-center align-items-center d-flex full-width">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-logo justify-content-center d-flex">Quest</div>
+        Find the best answers to the best questions in the world.
+        <br />
+        <br />
+        <div class="d-flex flex-row">
+          <%= link "Login", to: session_path(@conn, :new), class: "btn btn-primary half-width m-r-15" %>
+          <%= link "Signup", to: registration_path(@conn, :new), class: "btn btn-primary half-width m-l-15" %>
+          <%# <button class="btn btn-primary half-width m-r-15">Login</button> %>
+          <%# <button class="btn btn-primary half-width m-l-15">Signup</button> %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>

@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Circular";
+  src:
+    url("/fonts/lineto-circular-book-c.ttf") format("truetype")
+}
+@font-face {
+  font-family: "Circular";
+  src:
+    url("/fonts/lineto-circular-bold-c.ttf") format("truetype");
+  font-weight: bold;
+}
+html, body {
+  font-family: 'Circular';
+  height: 100%;
+}

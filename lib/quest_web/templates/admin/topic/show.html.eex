@@ -1,0 +1,6 @@
+<h2>Show Topic</h2>
+
+<%= @topic.name %>
+<%= img_tag(Quest.Avatar.url({@topic.avatar, @topic}, :thumb)) %>
+<span><%= link "Edit", to: admin_topic_path(@conn, :edit, @topic) %></span>
+<span><%= link "Back", to: admin_topic_path(@conn, :index) %></span>
