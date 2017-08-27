@@ -42,11 +42,15 @@ config :coherence,
   router: QuestWeb.Router,
   messages_backend: QuestWeb.Coherence.Messages,
   logged_out_url: "/",
-  email_from_name: "Your Name",
-  email_from_email: "yourname@example.com",
+  email_from_name: "Rony Varghese",
+  email_from_email: "admin@questqna.herokuapp.com",
   opts: [:invitable, :authenticatable, :recoverable, :lockable, :trackable, :unlockable_with_token, :confirmable, :registerable]
 
-config :coherence, QuestWeb.Coherence.Mailer,
-  adapter: Swoosh.Adapters.Sendgrid,
-  api_key: "your api key here"
-# %% End Coherence Configuration %%
+if Mix.env == :dev do
+  config :coherence, QuestWeb.Coherence.Mailer,
+    adapter: Swoosh.Adapters.Local
+else
+  config :coherence, QuestWeb.Coherence.Mailer,
+    adapter: Swoosh.Adapters.Sendgrid,
+    api_key: System.get_env("SENDGRID_API_KEY")
+end

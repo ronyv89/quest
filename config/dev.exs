@@ -47,7 +47,10 @@ config :logger, :console, format: "[$level] $message\n"
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
-
+config :coherence, QuestWeb.Coherence.Mailer,
+  adapter: Swoosh.Adapters.Local
+config :quest, Quest.Mailer,
+  adapter: Swoosh.Adapters.Local
 # Configure your database
 config :quest, Quest.Repo,
   adapter: Ecto.Adapters.Postgres,

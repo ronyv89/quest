@@ -27,19 +27,12 @@ config :quest, Quest.Repo,
   url: System.get_env("DATABASE_URL"),
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true
-config :coherence, CoherenceDemoWeb.Coherence.Mailer,
-  adapter: Swoosh.Adapters.Mailgun,
-  api_key: System.get_env("MAILGUN_API_KEY")
+config :coherence, QuestWeb.Coherence.Mailer,
+  adapter: Swoosh.Adapters.Sendgrid,
+  api_key: System.get_env("SENDGRID_API_KEY")
 config :quest, Quest.Mailer,
-  adapter: Bamboo.SMTPAdapter,
-  server: System.get_env("MAILGUN_SMTP_SERVER"),
-  port: System.get_env("MAILGUN_SMTP_PORT"),
-  domain: "questqna.heroku.com",
-  username: System.get_env("MAILGUN_SMTP_LOGIN"),
-  password: System.get_env("MAILGUN_SMTP_PASSWORD"),
-  tls: :if_available, # can be `:always` or `:never`
-  ssl: false, # can be `true`
-  retries: 1
+  adapter: Swoosh.Adapters.Sendgrid,
+  api_key: System.get_env("SENDGRID_API_KEY")
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
