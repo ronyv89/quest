@@ -34,6 +34,7 @@ defmodule QuestWeb.Router do
   scope "/", QuestWeb do
     pipe_through :browser
     get "/", PageController, :index
+
     # Add public routes below
   end
 
@@ -45,6 +46,7 @@ defmodule QuestWeb.Router do
   scope "/", QuestWeb do
     pipe_through :protected
     resources "/profile", ProfileController, singleton: true
+    get "/account/setup", PageController, :setup_account, as: :setup_account
     resources "/topics", TopicController, only: [:index, :show]
     # Add protected routes below
   end

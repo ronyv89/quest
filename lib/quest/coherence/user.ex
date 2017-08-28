@@ -9,6 +9,8 @@ defmodule Quest.Coherence.User do
   schema "users" do
     field :name, :string
     field :email, :string
+    field :setup_done, :boolean
+    field :setup_step, :integer
     has_one :profile, Profile
     coherence_schema()
 

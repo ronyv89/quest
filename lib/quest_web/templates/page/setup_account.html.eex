@@ -1,0 +1,8 @@
+<%= case @step do %>
+<% 1 -> %>
+  <div class="container-fluid">
+    test
+  </div>
+<% 2 -> %>
+  Test
+<% end %>

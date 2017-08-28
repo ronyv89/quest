@@ -20,6 +20,11 @@
 }
 .full-width {
   width: 100%;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 0.5rem 1rem;
 }
 .half-width {
   width: 50%;
@@ -33,4 +38,7 @@
 
 .reg-box {
   min-width: 400px;
+}
+.setup-box {
+  background-color: rgba(0, 0, 0, 0.8);
 }

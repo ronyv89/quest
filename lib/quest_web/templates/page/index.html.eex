@@ -1,4 +1,30 @@
-<%= if Coherence.current_user(@conn) do %>
+<%= if @current_user do %>
+  <%= if @current_user.setup_done do %>
+  <% else %>
+    <div class="modal-backdrop setup-box">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Account Setup <%= @current_user.setup_step + 1%>/3 </h5>
+          </div>
+          <div class="modal-body">
+            <%= case @current_user.setup_step do %>
+              <% 0 -> %>
+                Select your topics:
+                <%= for topic_chunk <- @topics do %>
+                  <%= for topic <- topic_chunk do %>
+                  <% end %>
+                <% end %>
+              <% 1 -> %>
+                Bye
+              <% 2 -> %>
+                Wow
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 <% else %>
   <div class="justify-content-center align-items-center d-flex full-width">
     <div class="card">

@@ -24,7 +24,7 @@
       </nav>
     <% end %>
     <div class="container-fluid container-full d-flex full-width">
-      <main role="main" class="container-full d-flex full-width">
+      <main role="main" class="d-flex full-width">
         <%= render @view_module, @view_template, assigns %>
       </main>
 
