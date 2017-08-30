@@ -16,7 +16,7 @@ defmodule Quest.Avatar do
 
   # Define a thumbnail transformation:
   def transform(:thumb, _) do
-    {:convert, "-strip -thumbnail 100 -gravity center -extent 350"}
+    {:convert, "-strip -thumbnail 100 -gravity center"}
   end
 
   # Override the persisted filenames:
@@ -30,9 +30,9 @@ defmodule Quest.Avatar do
   end
 
   # Provide a default URL if there hasn't been a file uploaded
-  # def default_url(version, scope) do
-  #   "/images/avatars/default_#{version}.png"
-  # end
+  def default_url(version, scope) do
+    "/images/topic.png"
+  end
 
   # Specify custom headers for s3 objects
   # Available options are [:cache_control, :content_disposition,

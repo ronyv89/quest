@@ -1,6 +1,6 @@
 defmodule Quest.Repo do
   use Ecto.Repo, otp_app: :quest
-
+  use Scrivener, page_size: 10
   @doc """
   Dynamically loads the repository url from the
   DATABASE_URL environment variable.

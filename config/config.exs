@@ -28,7 +28,16 @@ config :quest, QuestWeb.Endpoint,
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
-
+config :ex_admin,
+  repo: Quest.Repo,
+  module: QuestWeb,    # MyProject.Web for phoenix >= 1.3.0-rc
+  field_type_matching: %{
+    Quest.Avatar.Type => :file
+  },
+  modules: [
+    Quest.ExAdmin.Dashboard,
+    Quest.ExAdmin.Topic
+  ]
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
@@ -54,3 +63,6 @@ else
     adapter: Swoosh.Adapters.Sendgrid,
     api_key: System.get_env("SENDGRID_API_KEY")
 end
+
+config :xain, :after_callback, {Phoenix.HTML, :raw}
+

@@ -1,6 +1,7 @@
 defmodule QuestWeb.Router do
   use QuestWeb, :router
   use Coherence.Router
+  use ExAdmin.Router
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -17,6 +18,16 @@ defmodule QuestWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug Coherence.Authentication.Session, protected: true  # Add this
+  end
+
+  pipeline :admin_routes do
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_flash
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+    plug Coherence.Authentication.Session, protected: true  # Add this
+    plug QuestWeb.Plug.Admin
   end
 
   # Add this block
@@ -38,10 +49,15 @@ defmodule QuestWeb.Router do
     # Add public routes below
   end
 
-  scope "/admin", QuestWeb.Admin, as: :admin do
-    pipe_through :protected
-    resources "/topics", TopicController
+  scope "/admin", ExAdmin do
+    pipe_through :admin_routes
+    admin_routes()
   end
+
+  # scope "/admin", QuestWeb.Admin, as: :admin do
+  #   pipe_through :admin_routes
+  #   resources "/topics", TopicController
+  # end
 
   scope "/", QuestWeb do
     pipe_through :protected

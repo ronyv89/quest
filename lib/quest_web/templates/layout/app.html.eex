@@ -24,12 +24,25 @@
       </nav>
     <% end %>
     <div class="container-fluid container-full d-flex full-width">
-      <main role="main" class="d-flex full-width">
+      <%= if get_flash(@conn, :info) do %>
+        <p class="alert alert-info alert-box alert-dismissable" role="alert"><%= get_flash(@conn, :info) %></p>
+      <% end %>
+      <%= if get_flash(@conn, :error) do %>
+        <p class="alert alert-danger alert-box alert-dismissable" role="alert"><%= get_flash(@conn, :error) %></p>
+      <% end %>
+      <main role="main" class="d-flex full-width container-main">
         <%= render @view_module, @view_template, assigns %>
       </main>
 
     </div> <!-- /container -->
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script>
+      <%= if get_flash(@conn, :info) || get_flash(@conn, :error) do %>
+        $('.alert-dismissable').fadeTo(2000, 500).slideUp(500, function(){
+          $(".alert-dismissible").alert('close');
+        });
+      <% end %>
+    </script>
   </body>
 </html>

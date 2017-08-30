@@ -40,6 +40,7 @@ defmodule Quest.Mixfile do
       {:arc, "~> 0.8.0"},
       {:arc_ecto, "~> 0.7.0"},
       {:canary, github: "cpjk/canary"},
+      {:ex_admin, github: "ronyv89/ex_admin", branch: "phx-1.3"},
       {:coherence, github: 'smpallen99/coherence'},
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},

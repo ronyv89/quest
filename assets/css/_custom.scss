@@ -41,4 +41,16 @@
 }
 .setup-box {
   background-color: rgba(0, 0, 0, 0.8);
+  padding-top: 100px;
+}
+.alert-box {
+  z-index: 99999999;
+  margin-left: 20px;
+  margin: 20px;
+  flex: 1 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 80px;
 }
