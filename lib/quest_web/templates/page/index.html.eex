@@ -12,8 +12,14 @@
               <% 0 -> %>
                 Select your topics:
                 <%= for topic_chunk <- @topics do %>
-                  <%= for topic <- topic_chunk do %>
-                  <% end %>
+                  <div class="row" style="margin-bottom: 20px; margin-top: 20px;">
+                    <%= for topic <- topic_chunk do %>
+                      <div class="col-4">
+                        <img src="<%= Quest.Avatar.url({topic.avatar, topic}, :thumb)%>" alt="" />
+                        <%= topic.name %>
+                      </div>
+                    <% end %>
+                  </div>
                 <% end %>
               <% 1 -> %>
                 Bye

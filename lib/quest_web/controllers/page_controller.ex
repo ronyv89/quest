@@ -5,7 +5,7 @@ defmodule QuestWeb.PageController do
   def index(conn, _params) do
     current_user = Auth.current_user(conn)
     topics = []
-    if current_user, do: topics = Quest.Web.Topic |> Quest.Repo.all |> Enum.chunk_every(4)
+    if current_user, do: topics = Quest.Web.Topic |> Quest.Repo.all |> Enum.chunk_every(3)
     render conn, "index.html", current_user: current_user, topics: topics
   end
 
