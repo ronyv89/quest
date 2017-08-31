@@ -9,7 +9,7 @@ defmodule Quest.ExAdmin.Topic do
       column "Avatar", &(img(src: Quest.Avatar.url({&1.avatar, &1}, :original), height: 100, width: 100))
       actions()
     end
-    show topic do
+    show _topic do
 
       attributes_table do
         row :name

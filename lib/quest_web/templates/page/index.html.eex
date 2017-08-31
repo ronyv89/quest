@@ -1,30 +1,50 @@
 <%= if @current_user do %>
   <%= if @current_user.setup_done do %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-2">
+          Feed
+          <hr />
+          <%= for user_topic <- @topics do %>
+            <p> <%= user_topic.topic.name %></p>
+          <% end %>
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+      </div>
+    </div>
   <% else %>
+    <script>alert('helloing');</script>
     <div class="modal-backdrop setup-box">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Account Setup <%= @current_user.setup_step + 1%>/3 </h5>
+            <h5 class="modal-title">Select topics of your interest:</h5>
           </div>
           <div class="modal-body">
-            <%= case @current_user.setup_step do %>
-              <% 0 -> %>
-                Select your topics:
-                <%= for topic_chunk <- @topics do %>
-                  <div class="row" style="margin-bottom: 20px; margin-top: 20px;">
-                    <%= for topic <- topic_chunk do %>
-                      <div class="col-4">
-                        <img src="<%= Quest.Avatar.url({topic.avatar, topic}, :thumb)%>" alt="" />
-                        <%= topic.name %>
-                      </div>
-                    <% end %>
-                  </div>
-                <% end %>
-              <% 1 -> %>
-                Bye
-              <% 2 -> %>
-                Wow
+            Select your topics:
+            <%= form_for @changeset, setup_account_path(@conn, :setup_account), fn f -> %>
+              <%= for {topic_chunk, row_index} <- Enum.with_index(@topics) do %>
+                <div class="row" style="margin-bottom: 20px; margin-top: 20px;">
+                  <%= for {topic, index} <- Enum.with_index(topic_chunk) do %>
+                    <div class="col-4">
+                      <img src="<%= Quest.Avatar.url({topic.avatar, topic}, :thumb)%>" alt="" />
+                      <%= if user_topic = Quest.Coherence.User.has_topic(@current_user, topic.id) do %>
+                        <input name="user[user_topics][<%= topic_index(row_index, index) %>][id]" type="hidden" value="<%= user_topic.id %>">
+                        <input type="hidden" name="user[user_topics][<%= topic_index(row_index, index) %>][topic_id]" value="<%= topic.id %>"/>
+                        <input name="user[user_topics][<%= topic_index(row_index, index) %>][delete]" type="hidden" value="true">
+                        <input name="user[user_topics][<%= topic_index(row_index, index) %>][delete]" type="checkbox" value="false" checked="checked">
+                      <% else %>
+                        <input type="checkbox" name="user[user_topics][<%= topic_index(row_index, index) %>][topic_id]" value="<%= topic.id %>"/>
+                      <% end %>
+                      <%= topic.name %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+              <div class="d-flex align-items-end flex-column">
+                <%= submit "Submit", class: "btn btn-primary" %>
+              </div>
             <% end %>
           </div>
         </div>

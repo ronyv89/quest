@@ -7,6 +7,7 @@ defmodule Quest.Web.Topic do
   schema "topics" do
     field :name, :string
     field :avatar, Quest.Avatar.Type
+    many_to_many :users, Quest.Coherence.User, join_through: "users_topics"
     timestamps()
   end
 
